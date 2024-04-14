@@ -1,45 +1,54 @@
 // Question Section Start  
 const questions = [
     {
-        question:"Which is largest animal in the world?",
+        question:"When is the finalize() method called?",
         answers:[
-            {text:"Shark",correct:false},
-            {text:"Blue whale",correct:true},
-            {text:"Elephant",correct:false},
-            {text:"Giraffe",correct:false},
+            {text:"Before garbage Collection",correct:true},
+            {text:"Before an Object goes out of scope",correct:false},
+            {text:"Before a variable goes out of scope",correct:false},
+            {text:"None",correct:false},
         ]
     },
     {
-        question:"Which is largest desert in the world?",
+        question:"Select the valid statement",
         answers:[
-            {text:"Kalahari",correct:false},
-            {text:"gobi",correct:true},
-            {text:"Sahara",correct:false},
-            {text:"Antrctica",correct:true},
+            {text:"char[] ch=new char(5)",correct:false},
+            {text:"char[] ch=new char[5]",correct:true},
+            {text:"char[] ch=new char()",correct:false},
+            {text:"char[] ch=new char[]",correct:false},
         ]
     },
     {
-        question:"Which is the smallest continent in the world?",
+        question:"Identify the infinite loop.",
         answers:[
-            {text:"Asia",correct:false},
-            {text:"Australia",correct:true},
-            {text:"Arctic",correct:false},
-            {text:"Africa",correct:false},
+            {text:"for(; ;)",correct:false},
+            {text:"for(int i=0;i<1;i--)",correct:false},
+            {text:"for(int i=0;j++",correct:false},
+            {text:"All of the above",correct:true},
         ]
     },
     {
-        question:"Which is the smallest continent in the world?",
+        question:"What is Runnable",
         answers:[
-            {text:"Asia",correct:false},
-            {text:"Australia",correct:true},
-            {text:"Arctic",correct:false},
-            {text:"Africa",correct:false},
+            {text:"Abstract class",correct:false},
+            {text:"Interface",correct:true},
+            {text:"Class",correct:false},
+            {text:"Method",correct:false},
+        ]
+    },
+    {
+        question:"Exception created by try block is caught in which block",
+        answers:[
+            {text:"catch",correct:true},
+            {text:"throw",correct:false},
+            {text:"final",correct:false},
+            {text:"none",correct:false},
         ]
     }
 ];  
 // Question End 
 const questionElement=document.getElementById("question");
-const answerButton=document.getElementById("answer-buttons");
+const answerButtons=document.getElementById("answer-buttons");
 const nextButton=document.getElementById("next-btn");
 
 // add score login  
@@ -54,6 +63,7 @@ function startQuiz(){
 }
 
 function showQuestion(){
+    resetState();
     let currentQuestion=questions[currentQuestionIndex];
     let questionNo=currentQuestionIndex+1;
     questionElement.innerHTML=questionNo+". "+currentQuestion.question; 
@@ -63,11 +73,75 @@ function showQuestion(){
         const button=document.createElement("button");
         button.innerHTML=answer.text;
         button.classList.add("btn");
-        answerButton.appendChild(button);
+        answerButtons.appendChild(button);
+        if(answer.correct){
+            button.dataset.correct=answer.correct;
+        }
+        button.addEventListener("click",selectAnswer);
 
     })
 
     
 } 
+function resetState(){
+    nextButton.style.display="none";
+    while(answerButtons.firstChild){
+        answerButtons.removeChild(answerButtons.firstChild)
+    }
+}
+
+function selectAnswer(e){
+    const selectedBtn=e.target;
+    const isCorrect=selectedBtn.dataset.correct==="true"; 
+    if(isCorrect){
+        selectedBtn.classList.add("correct");
+        score++;
+    }
+    else{
+        selectedBtn.classList.add("incorrect");
+    }
+
+
+    Array.from(answerButtons.children).forEach(button=>{
+        if(button.dataset.correct==="true"){
+            button.classList.add("correct");
+        }
+        button.disabled=true; 
+
+    });
+    nextButton.style.display="block"
+}
+
+// create show score function
+function showScore(){
+    resetState();
+    questionElement.innerHTML=`You scored  ${score} out of ${questions.length} !`;
+    nextButton.innerHTML="Play Again"
+    nextButton.style.display="block";
+
+
+}
+
+function handdlNextButton(){
+    currentQuestionIndex++; 
+    if(currentQuestionIndex<questions.length){
+        showQuestion();
+    }else{
+        showScore();
+    }
+}
+
+
+
+
+nextButton.addEventListener("click",()=>{
+    if(currentQuestionIndex<questions.length){
+        handdlNextButton();
+    }else{
+        startQuiz();
+    }
+})
+
+
 
 startQuiz();
