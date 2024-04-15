@@ -1,48 +1,48 @@
 // Question Section Start  
 const questions = [
     {
-        question:"When is the finalize() method called?",
+        question:"Which of the following statements is correct regarding the object-oriented programming concept in Python?",
         answers:[
-            {text:"Before garbage Collection",correct:true},
-            {text:"Before an Object goes out of scope",correct:false},
-            {text:"Before a variable goes out of scope",correct:false},
-            {text:"None",correct:false},
+            {text:"Classes are real-world entities while objects are not real",correct:false},
+            {text:"Objects are real-world entities while classes are not real",correct:true},
+            {text:"Both objects and classes are real-world entities",correct:false},
+            {text:"All of the above",correct:false},
         ]
     },
     {
-        question:"Select the valid statement",
+        question:"What is the method inside the class in python language?",
         answers:[
-            {text:"char[] ch=new char(5)",correct:false},
-            {text:"char[] ch=new char[5]",correct:true},
-            {text:"char[] ch=new char()",correct:false},
-            {text:"char[] ch=new char[]",correct:false},
+            {text:"Object",correct:false},
+            {text:"Function",correct:true},
+            {text:"Attribute",correct:false},
+            {text:"Argument",correct:false},
         ]
     },
     {
-        question:"Identify the infinite loop.",
+        question:"Why does the name of local variables start with an underscore discouraged?",
         answers:[
-            {text:"for(; ;)",correct:false},
-            {text:"for(int i=0;i<1;i--)",correct:false},
-            {text:"for(int i=0;j++",correct:false},
-            {text:"All of the above",correct:true},
+            {text:"To identify the variable",correct:false},
+            {text:"It confuses the interpreter",correct:false},
+            {text:"It indicates a private variable of a class",correct:true},
+            {text:"All of the above",correct:false},
         ]
     },
     {
-        question:"What is Runnable",
+        question:"Which of the following precedence order is correct in Python?",
         answers:[
-            {text:"Abstract class",correct:false},
-            {text:"Interface",correct:true},
-            {text:"Class",correct:false},
-            {text:"Method",correct:false},
+            {text:"Parentheses, Exponential, Multiplication, Division, Addition, Subtraction",correct:false},
+            {text:"Multiplication, Division, Addition, Subtraction, Parentheses, Exponential",correct:true},
+            {text:"Division, Multiplication, Addition, Subtraction, Parentheses, Exponential",correct:false},
+            {text:"Exponential, Parentheses, Multiplication, Division, Addition, Subtraction",correct:false},
         ]
     },
     {
-        question:"Exception created by try block is caught in which block",
+        question:"Which of the following functions is a built-in function in python language?",
         answers:[
-            {text:"catch",correct:true},
-            {text:"throw",correct:false},
-            {text:"final",correct:false},
-            {text:"none",correct:false},
+            {text:"val()",correct:false},
+            {text:"print()",correct:true},
+            {text:"console.log",correct:false},
+            {text:"None of these",correct:false},
         ]
     }
 ];  
